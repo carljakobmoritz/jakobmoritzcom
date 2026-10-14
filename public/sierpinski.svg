@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 -119 1774 1774" role="img" aria-labelledby="title desc">
+  <title id="title">Magenta Sierpiński triangle</title>
+  <desc id="desc">Eight-level Sierpiński triangle in pure magenta (#FF00FF) on a transparent square canvas.</desc>
+  <!--
+Adapted from Sierpinski triangle.svg by Marco Polo and Wikimedia Commons contributors.
+Source: https://commons.wikimedia.org/wiki/File:Sierpinski_triangle.svg
+License: Creative Commons Attribution-ShareAlike 3.0 Unported
+https://creativecommons.org/licenses/by-sa/3.0/
+Changes: magenta fill, square canvas, and reusable geometry moved into defs.
+-->
+  <defs>
+    <path id="t" d="M 0 1 L .8660254 -.5 -.8660254 -.5 Z" fill="#FF00FF" />
+    <g id="d1">
+      <use xlink:href="#t" transform="matrix(0.5, 0, 0, 0.5, 0, 0.5)" />
+      <use xlink:href="#t" transform="matrix(0.5, 0, 0, 0.5, 0.433013, -0.25)" />
+      <use xlink:href="#t" transform="matrix(0.5, 0, 0, 0.5, -0.433013, -0.25)" />
+    </g>
+    <g id="d2">
+      <use xlink:href="#d1" transform="matrix(0.5, 0, 0, 0.5, 0, 0.5)" />
+      <use xlink:href="#d1" transform="matrix(0.5, 0, 0, 0.5, 0.433013, -0.25)" />
+      <use xlink:href="#d1" transform="matrix(0.5, 0, 0, 0.5, -0.433013, -0.25)" />
+    </g>
+    <g id="d3">
+      <use xlink:href="#d2" transform="matrix(0.5, 0, 0, 0.5, 0, 0.5)" />
+      <use xlink:href="#d2" transform="matrix(0.5, 0, 0, 0.5, 0.433013, -0.25)" />
+      <use xlink:href="#d2" transform="matrix(0.5, 0, 0, 0.5, -0.433013, -0.25)" />
+    </g>
+    <g id="d4">
+      <use xlink:href="#d3" transform="matrix(0.5, 0, 0, 0.5, 0, 0.5)" />
+      <use xlink:href="#d3" transform="matrix(0.5, 0, 0, 0.5, 0.433013, -0.25)" />
+      <use xlink:href="#d3" transform="matrix(0.5, 0, 0, 0.5, -0.433013, -0.25)" />
+    </g>
+    <g id="d5">
+      <use xlink:href="#d4" transform="matrix(0.5, 0, 0, 0.5, 0, 0.5)" />
+      <use xlink:href="#d4" transform="matrix(0.5, 0, 0, 0.5, 0.433013, -0.25)" />
+      <use xlink:href="#d4" transform="matrix(0.5, 0, 0, 0.5, -0.433013, -0.25)" />
+    </g>
+    <g id="d6">
+      <use xlink:href="#d5" transform="matrix(0.5, 0, 0, 0.5, 0, 0.5)" />
+      <use xlink:href="#d5" transform="matrix(0.5, 0, 0, 0.5, 0.433013, -0.25)" />
+      <use xlink:href="#d5" transform="matrix(0.5, 0, 0, 0.5, -0.433013, -0.25)" />
+    </g>
+    <g id="d7">
+      <use xlink:href="#d6" transform="matrix(.5 0 0 .5 0 .5)" />
+      <use xlink:href="#d6" transform="matrix(.5 0 0 .5 .43301270 -.25)" />
+      <use xlink:href="#d6" transform="matrix(.5 0 0 .5 -.43301270 -.25)" />
+    </g>
+    <g id="d8">
+      <use xlink:href="#d7" transform="matrix(.5 0 0 .5 0 .5)" />
+      <use xlink:href="#d7" transform="matrix(.5 0 0 .5 .43301270 -.25)" />
+      <use xlink:href="#d7" transform="matrix(.5 0 0 .5 -.43301270 -.25)" />
+    </g>
+  </defs>
+  <g transform="matrix(1024, 0, 0, -1024, 886.81, 1024)">
+    <use xlink:href="#d8" />
+  </g>
+</svg>

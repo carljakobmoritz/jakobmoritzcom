@@ -1,0 +1,42 @@
+<!-- Include once, outside any transformed or filtered container. -->
+<section class="potts" data-potts aria-label="Interactive Potts model">
+  <div class="potts-stage" data-potts-stage></div>
+  <div class="potts-dock" data-potts-dock>
+    <header class="potts-heading">
+      <div>
+        <h2>Potts model</h2>
+        <p>Local rules. Collective forms.</p>
+      </div>
+      <button type="button" data-potts-pause>Pause</button>
+      <button type="button" class="potts-toggle" data-potts-toggle aria-expanded="true" aria-controls="potts-controls-body" aria-label="Hide controls">Hide</button>
+    </header>
+    <div id="potts-controls-body" data-potts-body>
+      <div class="potts-controls">
+        <label class="potts-field potts-field-temperature">
+          <span>Temperature T/Tc <output data-potts-temperature-value>0.50</output></span>
+          <input data-potts-temperature type="range" min="0" max="1.5" step="0.01" value="0.5">
+        </label>
+        <label class="potts-field">
+          <span>States q</span>
+          <select data-potts-q>
+            <option>2</option><option selected>4</option><option>6</option><option>8</option><option>10</option>
+          </select>
+        </label>
+        <label class="potts-field">
+          <span>Sweeps / second</span>
+          <select data-potts-speed>
+            <option value="1">1</option><option value="5">5</option><option value="15" selected>15</option><option value="30">30</option>
+          </select>
+        </label>
+        <button type="button" data-potts-restart>Restart</button>
+      </div>
+      <footer class="potts-caption">
+        <div class="potts-legend" data-potts-legend aria-label="Spin-state colour key"></div>
+        <span>128 × 128 · periodic</span>
+        <span><output data-potts-sweeps>0.0</output> sweeps</span>
+      </footer>
+    </div>
+    <p class="potts-status potts-visually-hidden" data-potts-status role="status" aria-live="polite"></p>
+    <noscript>Enable JavaScript to see the interactive lattice.</noscript>
+  </div>
+</section>

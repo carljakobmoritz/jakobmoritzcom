@@ -1,0 +1,158 @@
+/* Full-viewport canvas + one floating control dock. Physics stays in the model. */
+.potts {
+  --potts-ink: #fff8e9;
+  --potts-muted: #e0ddd3;
+  --potts-line: #ffffff30;
+  color: var(--potts-ink);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.potts * { box-sizing: border-box; }
+.potts [hidden] { display: none !important; }
+.potts-stage {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  pointer-events: none;
+  background: #274150;
+}
+.potts-stage canvas { display: block; width: 100%; height: 100%; image-rendering: pixelated; }
+.potts-dock {
+  position: fixed;
+  z-index: 30;
+  left: 50%;
+  bottom: max(20px, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  width: min(850px, calc(100% - 40px - env(safe-area-inset-left) - env(safe-area-inset-right)));
+  max-height: calc(100vh - 40px);
+  max-height: calc(100dvh - 40px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 18px 20px 14px;
+  border: 1px solid var(--potts-line);
+  border-radius: 20px;
+  background: rgba(17, 31, 38, .88);
+  box-shadow: 0 12px 50px #07121830, inset 0 1px 0 #ffffff0a;
+  color-scheme: dark;
+}
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .potts-dock {
+    background: rgba(17, 31, 38, .68);
+    -webkit-backdrop-filter: blur(22px) saturate(130%);
+    backdrop-filter: blur(22px) saturate(130%);
+  }
+}
+.potts-heading { display: grid; grid-template-columns: 1fr auto auto; gap: 8px; align-items: center; }
+.potts-heading h2 { margin: 0; font: 22px/1.2 "Iowan Old Style", Palatino, Georgia, serif; letter-spacing: -.025em; }
+.potts-heading p { margin: 3px 0 0; font-size: 11px; color: var(--potts-muted); }
+.potts-controls {
+  display: grid;
+  grid-template-columns: minmax(160px, 1fr) 90px 140px 90px;
+  align-items: end;
+  gap: 18px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--potts-line);
+}
+.potts-field { display: flex; flex-direction: column; gap: 4px; min-width: 0; font-size: 12px; }
+.potts-field > span { display: flex; gap: 8px; align-items: baseline; justify-content: space-between; }
+.potts output { font-variant-numeric: tabular-nums; }
+.potts-field output { color: #fff6db; font-weight: 650; }
+.potts select, .potts button {
+  font: inherit;
+  font-size: 13px;
+  border: 1px solid var(--potts-line);
+  border-radius: 10px;
+  padding: 8px 12px;
+  min-height: 44px;
+  color: var(--potts-ink);
+  background: #ffffff0b;
+}
+.potts select { width: 100%; cursor: pointer; }
+.potts select option { color: #fff8e9; background: #24373f; }
+.potts button { cursor: pointer; }
+.potts button:hover { background: #ffffff20; }
+.potts button[data-potts-pause] { background: #efe3c9; color: #20333c; border-color: #efe3c9; min-width: 66px; }
+.potts button[data-potts-pause]:hover { background: #fff3d8; }
+.potts .potts-toggle { min-width: 76px; }
+.potts :focus-visible { outline: 2px solid #f4cf82; outline-offset: 3px; }
+.potts input[type="range"] { display: block; width: 100%; height: 44px; margin: 0; accent-color: #efd9aa; cursor: pointer; }
+.potts-caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  padding-top: 12px;
+  font-size: 11px;
+  color: var(--potts-muted);
+}
+.potts-legend { display: flex; flex-wrap: wrap; gap: 7px; align-items: center; }
+.potts-legend > span { display: inline-flex; gap: 4px; align-items: center; }
+.potts-swatch { display: inline-block; width: 10px; height: 10px; border-radius: 2px; border: 1px solid #ffffff60; }
+.potts-status { margin: 0; }
+.potts-visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@media (max-width: 650px) {
+  .potts-dock {
+    width: calc(100% - 24px - env(safe-area-inset-left) - env(safe-area-inset-right));
+    bottom: max(12px, env(safe-area-inset-bottom));
+    padding: 14px;
+    border-radius: 18px;
+  }
+  .potts-heading h2 { font-size: 20px; }
+  .potts-heading p { max-width: 140px; font-size: 10px; }
+  .potts-controls { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr) auto; gap: 8px; margin-top: 12px; padding-top: 10px; }
+  .potts-field-temperature { grid-column: 1 / -1; }
+  .potts select, .potts button { padding-inline: 9px; }
+  .potts button[data-potts-pause] { min-width: 58px; }
+  .potts .potts-toggle { min-width: 64px; }
+  .potts select { font-size: 16px; }
+  .potts-caption { gap: 6px 10px; font-size: 10px; }
+  .potts-legend { width: 100%; }
+}
+@media (max-height: 450px) and (min-width: 500px) {
+  .potts-controls { grid-template-columns: minmax(120px, 1fr) 64px 110px 80px; gap: 10px; }
+  .potts-field-temperature { grid-column: auto; }
+  .potts-legend { width: auto; }
+}
+/* Starter-blog integration: readable glass surfaces above the same canvas.
+   Never filter the main/shell ancestor: it also contains the fixed canvas. */
+body.potts-page {
+  --paper: #182c35;
+  --ink: #fff8e9;
+  --muted: #e0ddd3;
+  --line: #ffffff30;
+  --accent: #f4cf82;
+  background: var(--paper);
+  color: var(--ink);
+  padding-bottom: calc(var(--potts-dock-height, 300px) + 48px + env(safe-area-inset-bottom));
+}
+.potts-page .site-header, .potts-page .intro, .potts-page .archive, .potts-page .site-footer {
+  position: relative;
+  z-index: 1;
+  background: rgba(17, 31, 38, .82);
+  border: 1px solid #ffffff30;
+  border-radius: 18px;
+  padding: clamp(18px, 4vw, 32px);
+  margin-block: 20px;
+  box-shadow: 0 12px 50px #07121820;
+}
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .potts-page .site-header, .potts-page .intro, .potts-page .archive, .potts-page .site-footer {
+    background: rgba(17, 31, 38, .68);
+    -webkit-backdrop-filter: blur(22px) saturate(130%);
+    backdrop-filter: blur(22px) saturate(130%);
+  }
+}
+.potts-page .skip-link { z-index: 40; }
+.potts-page .post-card:last-child { border-bottom: 0; }
+@media print {
+  .potts { display: none; }
+  body.potts-page { color: #000; background: #fff; padding-bottom: 0; --ink: #000; --muted: #444; --line: #ccc; }
+  .potts-page .site-header, .potts-page .intro, .potts-page .archive, .potts-page .site-footer { background: none; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
+}
