@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Simplified magenta Sierpiński triangle</title>
+  <desc id="desc">Two levels: one large transparent central triangle and three smaller transparent triangles, one in each corner of a pure magenta triangle. Transparent outer background.</desc>
+  <!--
+Adapted from Sierpinski triangle.svg by Marco Polo and Wikimedia Commons contributors.
+Source: https://commons.wikimedia.org/wiki/File:Sierpinski_triangle.svg
+License: Creative Commons Attribution-ShareAlike 3.0 Unported
+https://creativecommons.org/licenses/by-sa/3.0/
+Changes: two subdivision levels, pure magenta fill, transparent inner triangles, square canvas.
+  -->
+  <path fill="#FF00FF" fill-rule="evenodd" d="M32 4.287187 L64 59.712813 H0 Z
+    M16 32 H48 L32 59.712813 Z
+    M24 18.143594 H40 L32 32 Z
+    M8 45.856406 H24 L16 59.712813 Z
+    M40 45.856406 H56 L48 59.712813 Z"/>
+</svg>
+
