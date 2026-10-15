@@ -156,3 +156,12 @@ body.potts-page {
   body.potts-page { color: #000; background: #fff; padding-bottom: 0; --ink: #000; --muted: #444; --line: #ccc; }
   .potts-page .site-header, .potts-page .intro, .potts-page .archive, .potts-page .site-footer { background: none; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
 }
+
+.potts-stage {
+  pointer-events: auto;
+}
+
+.potts-stage canvas {
+  cursor: crosshair;
+  touch-action: manipulation;
+}

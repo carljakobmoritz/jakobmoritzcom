@@ -107,6 +107,29 @@ export function mountPotts(root) {
       p.pixelDensity(1);
       const canvas = p.createCanvas(Math.max(1, stage.clientWidth), Math.max(1, stage.clientHeight));
       canvas.parent(stage);
+      canvas.elt.addEventListener('pointerdown', event => {
+        if (!ready || event.button !== 0) return;
+
+        const rect = canvas.elt.getBoundingClientRect();
+        if (!rect.width || !rect.height) return;
+
+        // Convert the pointer position into canvas coordinates.
+        const px = (event.clientX - rect.left) * p.width / rect.width;
+        const py = (event.clientY - rect.top) * p.height / rect.height;
+
+        // Undo the centred crop used by paint().
+        const side = Math.max(p.width, p.height);
+        const left = (p.width - side) / 2;
+        const top = (p.height - side) / 2;
+        const x = Math.floor((px - left) * model.size / side);
+        const y = Math.floor((py - top) * model.size / side);
+
+        if (x < 0 || x >= model.size || y < 0 || y >= model.size) return;
+
+        model.cells[model.index(x, y)] = 1;
+        paint(); // Show the change immediately, even while paused.
+        status.textContent = `Set site (${x}, ${y}) to state 1.`;
+      }, options);
       canvas.elt.setAttribute('role', 'img');
       canvas.elt.setAttribute('aria-label', 'Evolving Potts lattice. Each colour is a spin state; neighbouring sites tend to form domains.');
       p.noSmooth();
