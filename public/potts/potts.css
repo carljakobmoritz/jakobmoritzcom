@@ -42,7 +42,7 @@
 }
 @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .potts-dock {
-    background: rgba(17, 31, 38, .68);
+    background: rgba(17, 31, 38, .25);
     -webkit-backdrop-filter: blur(22px) saturate(130%);
     backdrop-filter: blur(22px) saturate(130%);
   }

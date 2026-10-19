@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" width="128" height="128" shape-rendering="crispEdges">
+  <title>Potts lattice</title>
+  <desc>An eight by eight lattice: a large green domain with smaller magenta, violet and blue domains.</desc>
+  <rect width="8" height="8" fill="#75fb97"/>
+  <path fill="#ea33ee" d="M0 0h3v1H0z M0 1h4v1H0z M0 2h2v1H0z M0 3h1v1H0z"/>
+  <path fill="#8c1af5" d="M0 5h2v1H0z M0 6h3v1H0z M0 7h4v1H0z"/>
+  <path fill="#53b6f6" d="M5 0h3v1H5z M6 1h2v1H6z M6 2h2v1H6z M7 3h1v1H7z M7 4h1v1H7z M6 5h2v1H6z M7 6h1v1H7z"/>
+</svg>
